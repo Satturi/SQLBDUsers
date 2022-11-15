@@ -1,11 +1,11 @@
-package jm.task.core.jdbc.dao;
+package jm.task.core.jdbc.service;
 
 import jm.task.core.jdbc.model.User;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public interface UserDao {
+public interface UserService {
     void createUsersTable() throws SQLException;
 
     void dropUsersTable() throws SQLException;
