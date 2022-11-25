@@ -29,8 +29,7 @@ public class UserDaoJDBCImpl implements UserDao {
             connection = Util.getConnection();
             connection.setAutoCommit(false);
             connection.createStatement().executeUpdate(sql);
-            connection.commit();
-            connection.setAutoCommit(true);
+
         } catch (SQLException e) {
             connection.rollback();
             e.printStackTrace();
@@ -40,6 +39,8 @@ public class UserDaoJDBCImpl implements UserDao {
             }
             if (connection != null) {
                 connection.close();
+                connection.commit();
+
             }
         }
     }
@@ -53,8 +54,7 @@ public class UserDaoJDBCImpl implements UserDao {
             connection.setAutoCommit(false);
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.executeUpdate();
-            connection.commit();
-            connection.setAutoCommit(true);
+
         } catch (SQLException e) {
             connection.rollback();
             e.printStackTrace();
@@ -64,6 +64,8 @@ public class UserDaoJDBCImpl implements UserDao {
             }
             if (connection != null) {
                 connection.close();
+                connection.commit();
+
             }
         }
     }
@@ -84,8 +86,6 @@ public class UserDaoJDBCImpl implements UserDao {
             preparedStatement.setString(2, user.getLastName());
             preparedStatement.setByte(3, user.getAge());
             preparedStatement.executeUpdate();
-            connection.commit();
-            connection.setAutoCommit(true);
         } catch (SQLException e) {
             connection.rollback();
             e.printStackTrace();
@@ -95,6 +95,8 @@ public class UserDaoJDBCImpl implements UserDao {
             }
             if (connection != null) {
                 connection.close();
+                connection.commit();
+
             }
         }
     }
@@ -108,8 +110,6 @@ public class UserDaoJDBCImpl implements UserDao {
             connection.setAutoCommit(false);
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.executeUpdate();
-            connection.commit();
-            connection.setAutoCommit(true);
         } catch (SQLException e) {
             connection.rollback();
             e.printStackTrace();
@@ -119,6 +119,8 @@ public class UserDaoJDBCImpl implements UserDao {
             }
             if (connection != null) {
                 connection.close();
+                connection.commit();
+
             }
         }
     }
@@ -140,8 +142,6 @@ public class UserDaoJDBCImpl implements UserDao {
                 user.setLastName(resultSet.getString("lastName"));
                 user.setAge(resultSet.getByte("age"));
                 userList.add(user);
-                connection.commit();
-                connection.setAutoCommit(true);
             }
         } catch (SQLException e) {
             connection.rollback();
@@ -152,6 +152,9 @@ public class UserDaoJDBCImpl implements UserDao {
             }
             if (connection != null) {
                 connection.close();
+
+                connection.commit();
+
             }
         }
         return userList;
@@ -167,8 +170,7 @@ public class UserDaoJDBCImpl implements UserDao {
             connection.setAutoCommit(false);
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.executeUpdate();
-            connection.commit();
-            connection.setAutoCommit(true);
+
         } catch (SQLException e) {
             connection.rollback();
             e.printStackTrace();
@@ -178,6 +180,7 @@ public class UserDaoJDBCImpl implements UserDao {
             }
             if (connection != null) {
                 connection.close();
+                connection.commit();
             }
         }
     }
